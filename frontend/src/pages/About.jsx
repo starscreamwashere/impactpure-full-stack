@@ -4,11 +4,13 @@ import Title from '../components/Title';
 import { assets } from '../assets/assets';
 import NewsletterBox from '../components/NewsletterBox';
 import { SlideRight, SlideLeft } from '../utility/animation.js';
+import Backdrop from '../components/Backdrop.jsx';
 
 const About = () => {
   return (
     <div>
       {/* About Us Section */}
+      
       <motion.div
         className="text-2xl text-center pt-8"
         initial="hidden"

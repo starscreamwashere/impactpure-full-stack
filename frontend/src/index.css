@@ -22,6 +22,13 @@ a.active hr {
   display: none;
 }
 
+body {
+  background-image: url('/frontend/public/backdrop.png'); /* Adjust the path if needed */
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps the image fixed on scroll */
+}
 
 @media (max-width:640px) {
   a.active {

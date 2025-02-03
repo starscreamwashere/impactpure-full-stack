@@ -1,14 +1,15 @@
-import React from 'react'
-import Hero from '../components/Hero'
-import LatestCollection from '../components/LatestCollection'
-import NewsletterBox from '../components/NewsletterBox'
-import Banner from '../components/Banner/Banner'
-import Banner2 from '../components/Banner/Banner2'
-import Banner3 from '../components/Banner/Banner3'
-import Banner4 from '../components/Banner/Banner4'
-import Banner5 from '../components/Banner/Banner5'
-import Banner6 from '../components/Banner/Banner6'
-import Testimonials from "../components/Testimonials/Testimonials"
+import React, { useState,useEffect } from 'react';
+import { motion } from 'framer-motion'; // Import motion
+import Hero from '../components/Hero';
+import LatestCollection from '../components/LatestCollection';
+import NewsletterBox from '../components/NewsletterBox';
+import Banner from '../components/Banner/Banner';
+import Banner2 from '../components/Banner/Banner2';
+import Banner3 from '../components/Banner/Banner3';
+import Banner4 from '../components/Banner/Banner4';
+import Banner5 from '../components/Banner/Banner5';
+import Banner6 from '../components/Banner/Banner6';
+import Testimonials from "../components/Testimonials/Testimonials";
 import Img1 from "../assets/2.png";
 import Img2 from "../assets/3.png";
 import Equipments from "../components/Equipments/Equipments";
@@ -61,23 +62,135 @@ const Banner6Data = {
   link: "#",
 };
 
+// const Home = () => {
+//   return (
+//     <div>
+//       <Hero />
+//       <LatestCollection />
+//       <Equipments />
+      
+//       {/* Banner Section with Animated Image */}
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner {...BannerData} />
+//       </motion.div>
 
-const Home = () => {
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner2 {...Banner2Data} />
+//       </motion.div>
+
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner3 {...Banner3Data} />
+//       </motion.div>
+
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner4 {...Banner4Data} />
+//       </motion.div>
+
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner5 {...Banner5Data} />
+//       </motion.div>
+
+//       <motion.div 
+//         initial={{ opacity: 0, y: 50 }} 
+//         animate={{ opacity: 1, y: 0 }} 
+//         transition={{ duration: 0.5, ease: "easeOut" }}
+//         viewport={{ once: true }}
+//       >
+//         <Banner6 {...Banner6Data} />
+//       </motion.div>
+
+//       <Testimonials />
+//       <NewsletterBox />
+//     </div>
+//   );
+// }
+
+// export default Home;
+const Home=()=>{
+  const [scrollDirection,setScrollDirection]=useState(null);
+  useEffect(()=>{
+    let lastScrollY=window.scrollY;
+    const handleScroll = ()=>{
+      if (window.scrollY>lastScrollY){
+        setScrollDirection('down');
+      }else{
+        setScrollDirection('up'); // Scrolling up
+      }
+      lastScrollY = window.scrollY <= 0 ? 0 : window.scrollY; // Prevent negative values
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Function to apply animations based on scroll direction
+  const getScrollAnimation = () => {
+    return {
+      initial: { y: scrollDirection === 'down' ? 100 : -100, opacity: 0 },
+      animate: { y: 0, opacity: 1 },
+      transition: { duration: 0.5, ease: 'easeOut' },
+    };
+  };
+
   return (
     <div>
       <Hero />
       <LatestCollection />
       <Equipments />
-      <Banner {...BannerData} />
-      <Banner2 {...Banner2Data} />
-      <Banner3 {...Banner3Data} />
-      <Banner4 {...Banner4Data} />
-      <Banner5 {...Banner5Data} />
-      <Banner6 {...Banner6Data} />
+      
+      {/* Banner Sections */}
+      <motion.div {...getScrollAnimation()}>
+        <Banner {...BannerData} />
+      </motion.div>
+
+      <motion.div {...getScrollAnimation()}>
+        <Banner2 {...Banner2Data} />
+      </motion.div>
+
+      <motion.div {...getScrollAnimation()}>
+        <Banner3 {...Banner3Data} />
+      </motion.div>
+
+      <motion.div {...getScrollAnimation()}>
+        <Banner4 {...Banner4Data} />
+      </motion.div>
+
+      <motion.div {...getScrollAnimation()}>
+        <Banner5 {...Banner5Data} />
+      </motion.div>
+
+      <motion.div {...getScrollAnimation()}>
+        <Banner6 {...Banner6Data} />
+      </motion.div>
+
       <Testimonials />
       <NewsletterBox />
     </div>
-  )
-}
-
-export default Home
+  );
+};
+export default Home;

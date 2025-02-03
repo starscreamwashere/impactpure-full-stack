@@ -23,7 +23,7 @@ const Navbar = () => {
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -100 }}
     transition={{ duration: 0.9 }}
-    className='flex items-center justify-between py-5 font-medium'>
+    className='flex items-center justify-between py-5 font-medium relative z-0'> {/* Lowered z-index */}
     
       
       <Link to='/'><img src={assets.logo} className='w-36' alt="" /></Link>
