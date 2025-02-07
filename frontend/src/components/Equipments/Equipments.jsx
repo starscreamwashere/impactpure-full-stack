@@ -55,7 +55,7 @@ const Equipments = () => {
               variants={SlideLeft(item.delay)}
               initial="hidden"
               whileInView="visible"
-              className="bg-gray-100 space-y-4 p-6 hover:bg-white rounded-xl hover:shadow-[0_0_22px_0_rgba(0,0,0,0.15)]"
+              className="bg-gray-100 space-y-4 p-6 hover:bg-white rounded-xl hover:shadow-[0_0_22px_0_rgba(0,0,0,0.15) ]"
             >
               
               <div className="text-4xl">{item.icon}</div>

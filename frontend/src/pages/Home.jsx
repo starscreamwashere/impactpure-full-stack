@@ -13,6 +13,7 @@ import Testimonials from "../components/Testimonials/Testimonials";
 import Img1 from "../assets/2.png";
 import Img2 from "../assets/3.png";
 import Equipments from "../components/Equipments/Equipments";
+import ProductItem from '../components/ProductItem.jsx';
 
 const BannerData = {
   image: Img1,
